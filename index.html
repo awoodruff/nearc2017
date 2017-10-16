@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expressive Cartography with Code</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,400,700,700i" rel="stylesheet">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { 
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+      }
+
+      .thin {
+        font-weight: 100;
+      }
+
+      .regular {
+        font-weight: 400;
+      }
+
+      strong {
+        font-weight: 700;
+        color: white;
+      }
+
+      a {
+        text-decoration: none;
+        color: #b1e9ff;
+        font-weight: 400;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .white a {
+        color: #20ade4;
+      }
+
+      h1, h2, h3 {
+        font-weight: 900;
+        color: white;
+      }
+
+      .remark-slide-content{ color: white; font-size: 30px; background-color: #163e5f; background-size: cover !important; padding: 20px 60px;}
+      
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .remark-slide-number { display: none; }
+
+      #intro-map {
+        position: absolute;
+        width: 110%;
+        height: 105%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      #axis {
+        position: absolute;
+        left: 0;
+      }
+
+      .smaller {
+        font-size: 24px;
+      }
+
+      .shadow {
+        text-shadow: 0 0 5px black, 0 0 2px black;
+      }
+
+      .shadow-hard {
+        text-shadow: 0 0 7px black, 0 0 5px black, 0 0 2px black;
+      }
+
+      .white {
+        background-color: white;
+        color: #163e5f;
+      }
+
+      .white.shadow {
+        text-shadow: 0 0 2px black;
+      }
+
+      .white h1, .white h2, .white h3 {
+        color: #163e5f;
+      }
+
+      .black {
+        background-color: black;
+      }
+
+      .remark-slide-content.contain {
+        background-size: contain !important;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .attribution {
+        font-size: 20px;
+        font-weight: 100;
+      }
+
+      .link {
+        position: absolute;
+        bottom: 20px;
+        right: 60px;
+        font-size: 20px;
+      }
+
+      .link a {
+        font-weight: 300;
+      }
+
+      .tight h1, .tight h2, .tight h3, .tight p {
+        margin: 10px 0;
+      }
+
+      li {
+        margin-bottom: 15px;
+      }
+
+      .enormous h1 {
+        font-size: 6em;
+      }
+      video {
+        max-width: 100%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: white, center, middle
+
+<video src="images/sketchy.mov" loop="true" autoplay="true"></video>
+
+.link.right[Expressive cartography with code  
+[awoodruff.github.io/jsgeo2017](http://awoodruff.github.io/jsgeo2017)]
+
+---
+
+<div id="intro-map"></div>
+
+Hi, my name is Andy Woodruff ([@awoodruff](http://twitter.com/awoodruff)).  
+I live across the river in Cambridge, and I make maps.
+
+.link.shadow[[awoodruff.github.io/jsgeo2017](http://awoodruff.github.io/jsgeo2017)]
+
+---
+class: middle, shadow-hard
+background-image: url(images/axis_collage.jpg)
+
+I work with [Axis Maps](http://axismaps.com).  
+We **"bring the traditions of cartography to the web."**
+
+---
+
+class: middle
+
+.center[
+i.e., we strive for
+## _good cartographic design via code_
+]
+
+.thin[_"Axis Maps was formed in 2006 and quickly became engaged with the rapidly changing field of interactive mapping. Google Maps had launched the previous spring. **We were surprised to see that the cartographic fundamentals and traditions we studied in grad school were falling by the wayside.** Many new maps focused on the technical aspects of delivering geographic content over the web rather than clear communication through cartographic design."_]
+
+---
+
+class: bottom, center
+
+background-image: url(images/chart.png)
+
+## The Great Cartographic Freakout
+
+---
+
+class: white, middle, center
+background-image: url(images/gold.gif)
+
+---
+
+class: bottom, shadow, tight, regular
+
+background-image: url(images/whaam.jpg)
+## Code for imitating art
+"Whaam!" Mapbox style (Amy Lee Walton)
+
+---
+
+class: bottom, tight, regular
+
+background-image: url(images/carto-petals.jpg)
+## Code for creative map symbols
+["Petal plot"](https://team.carto.com/u/mamataakella/builder/db498bb2-3b19-11e7-811b-0e3ebc282e83/embed) (Mamata Akella)
+
+---
+
+class: bottom, contain, tight, regular
+
+background-image: url(images/style_transfer.jpg)
+  
+## Code for style transfer
+[Map style transfer](https://twitter.com/michelleful/status/766066337009590272) (Michelle Fulwood)  
+.smaller[([original map](http://www.mapsmith.net/usaresources/) Stephen Smith)]
+
+---
+
+class: bottom, white, contain, tight, regular
+
+background-image: url(images/breathingearth.gif)
+
+## Code for animation
+[A Breathing Earth](https://www.visualcinnamon.com/portfolio/breathing-earth) (Nadieh Bremer)
+
+---
+
+class: bottom, shadow, tight, regular
+
+background-image: url(images/parkadelphia.gif)
+
+## Code for friendlier experiences
+[Parkadelphia](https://parkadelphia.com) (Lauren Ancona)
+
+---
+
+class: bottom, shadow, tight, regular
+
+background-image: url(images/tanaka_contours.png)
+
+## Code for desktop map design
+[Illuminated contours in QGIS](https://anitagraser.com/2015/05/24/how-to-create-illuminated-contours-tanaka-style/) (Anita Graser)
+
+---
+
+class: bottom, shadow, tight, regular
+background-image: url(images/cliffsandcoasts.png)
+
+## Code for tangible maps
+[Cliffs&amp;Coasts](http://rachelbinx.com/Cliffs-Coasts) (Rachel Binx)
+
+---
+
+class: middle
+
+1. Code for **traditional** cartographic techniques
+2. Code for **enhanced** cartographic techniques
+3. Code for **new** cartographic techniques
+4. Code for **expressive** design
+
+---
+
+class: middle, center, enormous
+
+# DESIGN
+
+---
+
+class: middle, center, enormous
+
+# YOUR
+
+---
+
+class: middle, center, enormous
+
+# DREAMS
+
+---
+
+class: center, middle, shadow
+background-image: url(images/tp1.jpg)
+
+## "[A]nything you can imagine, you can do. I think we are living in the best time to be a cartographer."
+**Tom Patterson, National Park Service cartographer, probably not talking about JavaScript, but still.  
+_ICC 2017, Washington, D.C._**   
+
+---
+
+background-image: url(images/tp2.jpg)
+
+---
+
+background-image: url(images/tp3.jpg)
+
+---
+
+class: bottom, shadow-hard, smaller
+background-image: url(images/tp_cp.jpg)
+
+Shaded relief in Photoshop. This tutorial still works, 20 years later. Try it!   
+[http://www.shadedrelief.com/cp28/relief_tp.html](http://www.shadedrelief.com/cp28/relief_tp.html)
+
+---
+
+background-image: url(images/molokai_dem_big.jpg)
+
+---
+
+background-image: url(images/molokai-map2.jpg)
+
+---
+
+class: middle, center
+
+![](images/relief/table.png)  
+![](images/relief/slx.png)  
+![](images/relief/sly.png)  
+![](images/relief/sl0.png)  
+![](images/relief/az.png)  
+![](images/relief/L.png)
+
+.link[Slocum et al., Thematic Cartography and Geographic Visualization (Second edition)]
+
+---
+
+## Remember when Flash was cool?
+
+```
+public class ShadedRelief extends Sprite {
+  // Do a buncha math and junk with AS3.
+}
+```
+![](images/molokai_shaded_tinted.jpg)
+
+.link[[andywoodruff.com/blog/shaded-relief-in-as3/](http://andywoodruff.com/blog/shaded-relief-in-as3/)]
+
+---
+
+## Remember when JavaScript was cool?
+
+```
+function drawRelief () {
+  // Do a buncha math and junk with JS and Canvas.
+}
+```
+![](images/molokai-relief.png)
+
+.link[[github.com/awoodruff/canvas-shaded-relief](https://github.com/awoodruff/canvas-shaded-relief)]
+
+---
+
+class: bottom, shadow
+
+background-image: url(images/molokai_sketchy.jpg)
+.link[[andywoodruff.com/blog/hachures-and-sketchy-relief-maps/](http://andywoodruff.com/blog/hachures-and-sketchy-relief-maps/)]
+
+---
+
+class: bottom, black, contain
+background-image: url(images/molokai_flow.gif)
+.link[[andywoodruff.com/blog/the-rain-on-terrain/](http://andywoodruff.com/blog/the-rain-on-terrain/)]
+
+---
+
+class: center, middle, shadow-hard
+background-image: url(images/handcoded.jpg)
+
+# Artisanal, hand-coded maps
+
+---
+
+class: center, middle, shadow
+background-image: url(images/mm.jpg)
+
+---
+
+background-image: url(images/mm_annotated.jpg)
+
+---
+
+background-image: url(images/eca1.jpg)
+
+---
+
+background-image: url(images/eca2.jpg)
+
+---
+
+class: shadow, white
+background-image: url(images/eca3.jpg)
+
+.link[[D3 for static map production](http://axismaps.com)]
+
+---
+
+class: black, bottom
+background-image: url(images/sea.jpg)
+
+---
+
+background-image: url(images/fireworks_loop.gif)
+
+1. **JS code to find midpoint and angle of every coastline segment**  
+2. QGIS stuff
+3. **Ridiculous D3 code that reprojects a map and draws a line 10 pixels at a time until it hits land—16,000 times for like an hour in a browser tab**
+4. More QGIS stuff
+5. Illustrator stuff
+6. Party
+
+.link[[github.com/awoodruff/beyond-the-sea](https://github.com/awoodruff/beyond-the-sea)]
+
+---
+
+class: smaller
+
+Code for special cases. Use duct tape.
+
+Think beyond fills and strokes. Generate patterns and effects.
+
+Think beyond circles and squares.  
+You have the freedom to construct any map symbol you can imagine.
+
+Use whatever code you know to customize and enhance static map design, even if it feels weird.
+
+People have worked hard to make animations and transitions easy.  
+Use them (judiciously) to improve the experience of map reading.
+
+Get specific and write out lots of conditions.  
+Small touches make for great cartography.
+
+Ugly code can make for beautiful design.  
+Don't be afraid to write it and share it.
+
+
+---
+
+class: middle, center
+
+## Let code—yes, even JavaScript—be a paintbrush.
+
+---
+
+class: middle
+
+[awoodruff.github.io/jsgeo2017](http://awoodruff.github.io/jsgeo2017)  
+andy@axismaps.com  
+[@awoodruff](http://twitter.com/awoodruff)
+
+Do you love great cartographic design? Of course you do!  
+Join us at [NACIS](http://nacis.org/annual-meeting/current-meeting/) in Montréal, October 10–13.
+
+    </textarea>
+    <!--script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script-->
+    <script src="d3.v4.min.js"></script>
+    <script src="remark-latest.min.js"></script>
+    <script>
+      var slideshow = remark.create();
+
+      slideshow.on('showSlide', function (slide) {
+                  console.log(slide)
+
+        var i = slide.getSlideIndex();
+        console.log(i)
+        if (i == 1) {
+          d3.xml("jsgeo.svg").mimeType("image/svg+xml").get(function(error, xml) {
+            if (error) throw error;
+            d3.select('#intro-map').node().appendChild(xml.documentElement);
+            d3.select('#intro-map').selectAll('#paths *').each(function(){
+              var p = d3.select(this);
+              var l = this.getTotalLength();
+              p.datum(l)
+                .style('stroke-dasharray', l + ' ' + l)
+                .style('stroke-dashoffset', l);
+            });
+            d3.select('#intro-map').select('#p0')
+              .transition()
+              .delay(500)
+              .duration(function(d){ return 1000 * d / 150; })
+              .ease(d3.easeLinear)
+              .style('stroke-dashoffset', 0)
+              .on('end', animate1);
+            function animate1 () {
+              d3.select('#intro-map').select('#p1')
+                .transition()
+                .duration(function(d){ return 1000 * d / 150; })
+                .ease(d3.easeLinear)
+                .style('stroke-dashoffset', 0)
+                .on('end', animate2);
+            }
+            function animate2 () {
+              d3.select('#intro-map').select('#p2')
+                .transition()
+                .duration(function(d){ return 1000 * d / 150; })
+                .ease(d3.easeLinear)
+                .style('stroke-dashoffset', 0)
+                .on('end', animate3);
+            }
+            function animate3 () {
+              d3.select('#intro-map').select('#p3')
+                .transition()
+                .duration(function(d){ return 1000 * d / 120; })
+                .ease(d3.easeLinear)
+                .style('stroke-dashoffset', 0)
+            }
+          });
+
+        }
+        // Slide is the slide being navigated to
+      });
+
+    </script>
+  </body>
+</html>
