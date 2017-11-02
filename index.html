@@ -143,16 +143,17 @@ class: white, center, middle
 <video src="images/sketchy.mov" loop="true" autoplay="true"></video>
 
 .link.right[Expressive cartography with code  
-[awoodruff.github.io/jsgeo2017](http://awoodruff.github.io/jsgeo2017)]
+[awoodruff.github.io/nearc2017](http://awoodruff.github.io/nearc2017)]
 
 ---
 
-<div id="intro-map"></div>
+class: middle
+background-image: url(images/boston_painty.jpg)
 
 Hi, my name is Andy Woodruff ([@awoodruff](http://twitter.com/awoodruff)).  
-I live across the river in Cambridge, and I make maps.
+I live in Cambridge, Massachusetts and I make maps.
 
-.link.shadow[[awoodruff.github.io/jsgeo2017](http://awoodruff.github.io/jsgeo2017)]
+.link.shadow[[awoodruff.github.io/nearc2017](http://awoodruff.github.io/nearc2017)]
 
 ---
 class: middle, shadow-hard
@@ -174,6 +175,29 @@ i.e., we strive for
 
 ---
 
+class: middle, center
+
+background-image: url(images/diploma.jpg)
+
+---
+
+class: middle, center, contain
+
+background-image: url(images/gis_map.png)
+
+# The abhorrent "GIS Map"
+
+---
+
+class: bottom, tight, regular, shadow
+
+background-image: url(images/indiemapper.jpg)
+
+## "Free yourself from GIS"
+[indiemapper](http://indiemapper.io)
+
+---
+
 class: bottom, center
 
 background-image: url(images/chart.png)
@@ -187,18 +211,29 @@ background-image: url(images/gold.gif)
 
 ---
 
-class: bottom, shadow, tight, regular
+software-ish tools are good too e.g. John Nelson's work 
 
-background-image: url(images/whaam.jpg)
-## Code for imitating art
-"Whaam!" Mapbox style (Amy Lee Walton)
+---
+
+class: bottom, tight, regular
+
+background-image: url(images/wind.jpg)
+
+[earth](http://earth.nullschool.net) (Cameron Beccario)
+
+---
+
+class: bottom, tight, regular
+background-image: url(images/flowmap.gif)
+
+[Canvas flowmap](https://github.com/sarahbellum/Canvas-Flowmap-Layer) (Sarah Bell &amp; Jacob Wasilkowski)
 
 ---
 
 class: bottom, tight, regular
 
 background-image: url(images/carto-petals.jpg)
-## Code for creative map symbols
+
 ["Petal plot"](https://team.carto.com/u/mamataakella/builder/db498bb2-3b19-11e7-811b-0e3ebc282e83/embed) (Mamata Akella)
 
 ---
@@ -207,27 +242,16 @@ class: bottom, contain, tight, regular
 
 background-image: url(images/style_transfer.jpg)
   
-## Code for style transfer
 [Map style transfer](https://twitter.com/michelleful/status/766066337009590272) (Michelle Fulwood)  
 .smaller[([original map](http://www.mapsmith.net/usaresources/) Stephen Smith)]
 
 ---
 
-class: bottom, white, contain, tight, regular
-
-background-image: url(images/breathingearth.gif)
-
-## Code for animation
-[A Breathing Earth](https://www.visualcinnamon.com/portfolio/breathing-earth) (Nadieh Bremer)
-
----
-
 class: bottom, shadow, tight, regular
 
-background-image: url(images/parkadelphia.gif)
+background-image: url(images/whaam.jpg)
 
-## Code for friendlier experiences
-[Parkadelphia](https://parkadelphia.com) (Lauren Ancona)
+"Whaam!" Mapbox style (Amy Lee Walton)
 
 ---
 
@@ -235,7 +259,6 @@ class: bottom, shadow, tight, regular
 
 background-image: url(images/tanaka_contours.png)
 
-## Code for desktop map design
 [Illuminated contours in QGIS](https://anitagraser.com/2015/05/24/how-to-create-illuminated-contours-tanaka-style/) (Anita Graser)
 
 ---
@@ -243,7 +266,6 @@ background-image: url(images/tanaka_contours.png)
 class: bottom, shadow, tight, regular
 background-image: url(images/cliffsandcoasts.png)
 
-## Code for tangible maps
 [Cliffs&amp;Coasts](http://rachelbinx.com/Cliffs-Coasts) (Rachel Binx)
 
 ---
@@ -279,7 +301,7 @@ class: center, middle, shadow
 background-image: url(images/tp1.jpg)
 
 ## "[A]nything you can imagine, you can do. I think we are living in the best time to be a cartographer."
-**Tom Patterson, National Park Service cartographer, probably not talking about JavaScript, but still.  
+**Tom Patterson, National Park Service cartographer, probably not talking about code, but still.  
 _ICC 2017, Washington, D.C._**   
 
 ---
@@ -455,57 +477,57 @@ Join us at [NACIS](http://nacis.org/annual-meeting/current-meeting/) in Montréa
     <script>
       var slideshow = remark.create();
 
-      slideshow.on('showSlide', function (slide) {
-                  console.log(slide)
+      // slideshow.on('showSlide', function (slide) {
+      //             console.log(slide)
 
-        var i = slide.getSlideIndex();
-        console.log(i)
-        if (i == 1) {
-          d3.xml("jsgeo.svg").mimeType("image/svg+xml").get(function(error, xml) {
-            if (error) throw error;
-            d3.select('#intro-map').node().appendChild(xml.documentElement);
-            d3.select('#intro-map').selectAll('#paths *').each(function(){
-              var p = d3.select(this);
-              var l = this.getTotalLength();
-              p.datum(l)
-                .style('stroke-dasharray', l + ' ' + l)
-                .style('stroke-dashoffset', l);
-            });
-            d3.select('#intro-map').select('#p0')
-              .transition()
-              .delay(500)
-              .duration(function(d){ return 1000 * d / 150; })
-              .ease(d3.easeLinear)
-              .style('stroke-dashoffset', 0)
-              .on('end', animate1);
-            function animate1 () {
-              d3.select('#intro-map').select('#p1')
-                .transition()
-                .duration(function(d){ return 1000 * d / 150; })
-                .ease(d3.easeLinear)
-                .style('stroke-dashoffset', 0)
-                .on('end', animate2);
-            }
-            function animate2 () {
-              d3.select('#intro-map').select('#p2')
-                .transition()
-                .duration(function(d){ return 1000 * d / 150; })
-                .ease(d3.easeLinear)
-                .style('stroke-dashoffset', 0)
-                .on('end', animate3);
-            }
-            function animate3 () {
-              d3.select('#intro-map').select('#p3')
-                .transition()
-                .duration(function(d){ return 1000 * d / 120; })
-                .ease(d3.easeLinear)
-                .style('stroke-dashoffset', 0)
-            }
-          });
+      //   var i = slide.getSlideIndex();
+      //   console.log(i)
+      //   if (i == 1) {
+      //     d3.xml("jsgeo.svg").mimeType("image/svg+xml").get(function(error, xml) {
+      //       if (error) throw error;
+      //       d3.select('#intro-map').node().appendChild(xml.documentElement);
+      //       d3.select('#intro-map').selectAll('#paths *').each(function(){
+      //         var p = d3.select(this);
+      //         var l = this.getTotalLength();
+      //         p.datum(l)
+      //           .style('stroke-dasharray', l + ' ' + l)
+      //           .style('stroke-dashoffset', l);
+      //       });
+      //       d3.select('#intro-map').select('#p0')
+      //         .transition()
+      //         .delay(500)
+      //         .duration(function(d){ return 1000 * d / 150; })
+      //         .ease(d3.easeLinear)
+      //         .style('stroke-dashoffset', 0)
+      //         .on('end', animate1);
+      //       function animate1 () {
+      //         d3.select('#intro-map').select('#p1')
+      //           .transition()
+      //           .duration(function(d){ return 1000 * d / 150; })
+      //           .ease(d3.easeLinear)
+      //           .style('stroke-dashoffset', 0)
+      //           .on('end', animate2);
+      //       }
+      //       function animate2 () {
+      //         d3.select('#intro-map').select('#p2')
+      //           .transition()
+      //           .duration(function(d){ return 1000 * d / 150; })
+      //           .ease(d3.easeLinear)
+      //           .style('stroke-dashoffset', 0)
+      //           .on('end', animate3);
+      //       }
+      //       function animate3 () {
+      //         d3.select('#intro-map').select('#p3')
+      //           .transition()
+      //           .duration(function(d){ return 1000 * d / 120; })
+      //           .ease(d3.easeLinear)
+      //           .style('stroke-dashoffset', 0)
+      //       }
+      //     });
 
-        }
-        // Slide is the slide being navigated to
-      });
+      //   }
+      //   // Slide is the slide being navigated to
+      // });
 
     </script>
   </body>
